@@ -11,7 +11,7 @@ The solution currently supports the text-based query, and will be extended to su
 
 ### Architecture Diagrams
 
-RAG solution typically comprised with 2 processes: Indexing and Searching.
+RAG solution is typically comprised with 2 processes: Indexing and Searching.
 - Indexing is the process of creating a vector representation of the data.
 - Searching is the process of finding the most similar vectors to a given query vector.
 
@@ -87,12 +87,12 @@ docker build -t <CR_url>.rag-on-edge-web:latest .
 ```
 
 If you want to modify the configuration before containerizing the code, check the details from the the READMEs in the respective component folder.
-- [rag-on-edge-web README](./rag-on-edge-web/README.md)
-- [rag-on-edge-interface README](./rag-on-edge-interface/README.md)
-- [rag-on-edge-vectorDB README](./rag-on-edge-vectorDB/README.md)
-- [rag-on-edge-LLM README](./rag-on-edge-LLM/README.md)
+- [rag-on-edge-web README](./solution/rag-on-edge-web/README.md)
+- [rag-on-edge-interface README](./solution/rag-on-edge-interface/README.md)
+- [rag-on-edge-vectorDB README](./solution/rag-on-edge-vectorDB/README.md)
+- [rag-on-edge-LLM README](./solution/rag-on-edge-LLM/README.md)
 
-> **_NOTE:_**  Make sure to put LLM model before containerizing the rag-on-edge-LLM component. See [rag-on-edge-LLM README](./rag-on-edge-LLM/README.md).
+> **_NOTE:_**  Make sure to put LLM model files before containerizing the rag-on-edge-LLM component. See [rag-on-edge-LLM README](./solution/rag-on-edge-LLM/README.md).
 
 3. Login your container registry and push the container image to the registry:
 
@@ -145,8 +145,11 @@ kubectl get service rag-web-service -n < namespace > -o jsonpath="{.status.loadB
 A preliminary demo video can be found [here](https://microsoftapc-my.sharepoint.com/:v:/g/personal/chencheng_microsoft_com/EatJRpnHPclAuIY84No4zK8BTFIRtUhEEG62uMQAdas1jw?e=jcNZCT&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D).
 
 ## Resources
+- [Nick287/AOAI-Azure-Search-PDF Repo Author: Bo Wang](https://github.com/Nick287/AOAI-Azure-Search-PDF/tree/chengc/integrate-llm-edge-solution-new)
+- [DavidBurela/edgellm](https://github.com/DavidBurela/edgellm)
 - [IaC for deploying a Windows VM](https://github.com/cse-labs/distributed-az-edge-framework/)
 - [What Is Retrieval-Augmented Generation (RAG)](https://www.oracle.com/sg/artificial-intelligence/generative-ai/retrieval-augmented-generation-rag/)
 - [What is vector search](https://www.algolia.com/blog/ai/what-is-vector-search/?utm_source=google&utm_medium=paid_search&utm_campaign=rl_emea_search_dstalg_nb_dynamic&utm_content=blog_ai_dynamic&utm_term=&utm_region=emea&utm_model=nonbrand&utm_ag=rl&utm_camp_parent=slg&utm_2nd_camp=dstalg&_bt=677640514505&_bm=&_bn=g&gad_source=1&gclid=EAIaIQobChMIr9aMkaHDgwMV06tmAh1hXQH8EAAYASAAEgIY_fD_BwE)
 - [Design Patterns: Publisher-Subscriber pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/publisher-subscriber)
 - [What is MQTT and How Does it Work](https://www.techtarget.com/iotagenda/definition/MQTT-MQ-Telemetry-Transport)
+
