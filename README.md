@@ -147,7 +147,7 @@ A preliminary demo video can be found [here](https://microsoftapc-my.sharepoint.
 ## Resources
 - [Nick287/AOAI-Azure-Search-PDF Repo Author: Bo Wang](https://github.com/Nick287/AOAI-Azure-Search-PDF/tree/chengc/integrate-llm-edge-solution-new)
 - [DavidBurela/edgellm](https://github.com/DavidBurela/edgellm)
-- [IaC for deploying a Windows VM](https://github.com/cse-labs/distributed-az-edge-framework/)
+- [IaC for deploying AIO with Terraform](https://github.com/cse-labs/aio-data-historian)
 - [What Is Retrieval-Augmented Generation (RAG)](https://www.oracle.com/sg/artificial-intelligence/generative-ai/retrieval-augmented-generation-rag/)
 - [What is vector search](https://www.algolia.com/blog/ai/what-is-vector-search/?utm_source=google&utm_medium=paid_search&utm_campaign=rl_emea_search_dstalg_nb_dynamic&utm_content=blog_ai_dynamic&utm_term=&utm_region=emea&utm_model=nonbrand&utm_ag=rl&utm_camp_parent=slg&utm_2nd_camp=dstalg&_bt=677640514505&_bm=&_bn=g&gad_source=1&gclid=EAIaIQobChMIr9aMkaHDgwMV06tmAh1hXQH8EAAYASAAEgIY_fD_BwE)
 - [Design Patterns: Publisher-Subscriber pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/publisher-subscriber)
