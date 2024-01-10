@@ -57,6 +57,7 @@ Enables efficient message filtering based on content or metadata.
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/en-us/free/?WT.mc_id=A261C142F) before you begin.
 - A Windows host machine with the spec that is capable to deploy AKSEE and AIO as indicated in the Installation below. You may use a VM or a physical machine.
+The solution was tested on Azure VM Windows size Standard D48ds v5, OS version 2022-datacenter-g2.
 
 ### Installation
 
@@ -69,6 +70,16 @@ Enables efficient message filtering based on content or metadata.
 
     For AIO installation for production, at least 8GB-to-16GB RAM, and a 4-core X64 CPU is required as indicated [here](https://engage.cloud.microsoft/main/threads/eyJfdHlwZSI6IlRocmVhZCIsImlkIjoiMjU3NzUwNzU3NzkxMzM0NCJ9?trk_copy_link=V1&domainRedirect=true).
 
+-  Install Dapr runtime and deploy MQ broker pub/sub components on the AKSEE cluster via following the instructions [here](https://learn.microsoft.com/en-us/azure/iot-operations/develop/howto-develop-dapr-apps).
+
+    ```bash
+    helm repo add dapr https://dapr.github.io/helm-charts/
+    helm repo update
+    helm upgrade --install dapr dapr/dapr --version=1.11 --namespace dapr-system --create-namespace --wait
+
+    kubectl apply -f src/rag-mq-components.yaml 
+    ```
+
 ### Quick Start
 
 1. Download the repo to your local dev machine
@@ -79,22 +90,32 @@ Enables efficient message filtering based on content or metadata.
 
 2. Containerize each component: rag-on-edge-web, rag-on-edge-interface, rag-on-edge-vectorDB, rag-on-edge-LLM from the Dockerfile in the respective component folder.
 
-For example:
+> **_NOTE:_**  Make sure to put LLM model files before containerizing the rag-on-edge-LLM component. See [rag-on-edge-LLM README](./src/rag-on-edge-LLM/README.md).
 
 ```bash
 cd rag-on-edge-web
 docker build -t <CR_url>.rag-on-edge-web:latest .
+
+cd rag-on-edge-interface/modules/RAGInterface
+docker build -t <CR_url>.rag-on-edge-interface:latest .
+
+cd rag-on-edge-vectorDB/modules/VDBModule
+docker build -t <CR_url>.rag-on-edge-vectorDB:latest .
+
+cd rag-on-edge-LLM-32core/modules/LLMModule
+docker build -t <CR_url>.rag-on-edge-LLM:latest .
 ```
 
 If you want to modify the configuration before containerizing the code, check the details from the the READMEs in the respective component folder.
+
 - [rag-on-edge-web README](./src/rag-on-edge-web/README.md)
 - [rag-on-edge-interface README](./src/rag-on-edge-interface/README.md)
 - [rag-on-edge-vectorDB README](./src/rag-on-edge-vectorDB/README.md)
 - [rag-on-edge-LLM README](./src/rag-on-edge-LLM/README.md)
 
-> **_NOTE:_**  Make sure to put LLM model files before containerizing the rag-on-edge-LLM component. See [rag-on-edge-LLM README](./src/rag-on-edge-LLM/README.md).
-
 3. Login your container registry and push the container image to the registry:
+
+For example:
 
 ```bash
 docker push <CR_url>.rag-on-edge-web:latest
@@ -112,7 +133,7 @@ docker push <CR_url>.rag-on-edge-web:latest
     - rag-on-edge-vectorDB
     - rag-on-edge-LLM
     
-to the AKSEE cluster with /aio-dapr-deploy/xxx-dapr-workload.yaml from the respective component folder. Remember to modify the image name and cluster secret in the yaml file.
+to the AKSEE cluster with /aio-dapr-deploy/xxx-dapr-workload.yaml from the respective component folder. Remember to modify the image url and cluster secret in the yaml file.
 
 ```bash
 kubectl apply -f xxx-dapr-workload.yaml
