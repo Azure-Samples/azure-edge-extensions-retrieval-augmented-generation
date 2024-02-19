@@ -118,7 +118,7 @@ If you want to modify the configuration before containerizing the code, check th
 For example:
 
 ```bash
-docker push <CR_url>.rag-on-edge-web:latest
+docker push <CR_url>/rag-on-edge-web:latest
 ```
 
 4. Create a secret in the AKSEE cluster to access your container registry with the script provided:
