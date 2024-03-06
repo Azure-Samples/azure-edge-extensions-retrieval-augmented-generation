@@ -45,11 +45,11 @@ spec:
             name: aio-ca-trust-bundle-test-only
 
       imagePullSecrets:
-         - name: < cluster secret >
+         - name: ${SECRET_NAME}
 
       containers:
         - name: rag-llm
-          image: < container image >
+          image: $ACR_HOST/rag-on-edge-llm:latest
           imagePullPolicy: Always
           # livenessProbe:
           #   initialDelaySeconds: 100
@@ -63,10 +63,8 @@ spec:
           #     port: http
           
         # Container for the Pub/sub component
-        - name: aio-mq-pubsub-pluggable
-          image: ghcr.io/azure/iot-mq-dapr-components/pubsub:latest
-          imagePullPolicy: Always
-
+        - name: aio-mq-components
+          image: ghcr.io/azure/iot-mq-dapr-components:latest
           volumeMounts:
           - name: dapr-unix-domain-socket
             mountPath: /tmp/dapr-components-sockets
@@ -74,26 +72,4 @@ spec:
             mountPath: /var/run/secrets/tokens
           - name: aio-ca-trust-bundle
             mountPath: /var/run/certs/aio-mq-ca-cert/
-
-        # # Container for the State Management component
-        # - name: aio-mq-statestore-pluggable
-        #   image: ghcr.io/azure/iot-mq-dapr-components/statestore:latest
-        #   imagePullPolicy: Always
-        #   # livenessProbe:
-        #   #   initialDelaySeconds: 100
-        #   #   httpGet:
-        #   #     path: /v1.0/healthz
-        #   #     port: http
-        #   # readinessProbe:
-        #   #   initialDelaySeconds: 100
-        #   #   httpGet:
-        #   #     path: /v1.0/healthz
-        #   #     port: http
-        #   volumeMounts:
-        #   - name: dapr-unix-domain-socket
-        #     mountPath: /tmp/dapr-components-sockets
-        #   - name: mqtt-client-token
-        #     mountPath: /var/run/secrets/tokens
-        #   - name: aio-ca-trust-bundle
-        #     mountPath: /var/run/certs/aio-mq-ca-cert/
 
