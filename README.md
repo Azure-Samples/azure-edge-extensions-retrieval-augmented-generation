@@ -98,9 +98,11 @@ The solution was tested on Azure Windows VM size Standard D48ds v5, OS version 2
       kubectl apply -f https://raw.githubusercontent.com/Azure/AKS-Edge/main/samples/storage/local-path-provisioner/local-path-storage.yaml
       ```
 
+- Connect the AKS EE Kubernetes cluster to Azure Arc, see [Connect your AKS Edge Essentials cluster to Arc](https://learn.microsoft.com/en-us/azure/aks/hybrid/aks-edge-howto-connect-to-arc).
 - Deploy Azure IoT IoT Operations Preview to your cluster via following the instructions [here](https://learn.microsoft.com/en-us/azure/iot-operations/deploy-iot-ops/howto-deploy-iot-operations?tabs=cli).
 
-- Recommended: if you would like to remotely connect from your developer machine into the Kubernetes cluster, you can take the steps [here](https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/cluster-connect?tabs=azure-cli%2Cagent-version). Further steps in the Quick start assume connecting to the cluster from your local developer machine.
+> [!TIP]
+> Recommended: if you would like to remotely connect from your developer machine into the Kubernetes cluster, please follow the steps in [Use cluster connect to securely connect to Azure Arc-enabled Kubernetes clusters](https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/cluster-connect?tabs=azure-cli%2Cagent-version). Further steps in the Quick start assume connecting to the cluster from your local developer machine.
 
 ### Quick Start
 
@@ -165,6 +167,7 @@ docker push $ACR_HOST/rag-on-edge-llm:latest
 
   ```bash
   ./deploy/service-principal.sh
+  ```
 
 7. Install Dapr runtime on the AKS EE cluster, for more information see [here](https://learn.microsoft.com/en-us/azure/iot-operations/develop/howto-develop-dapr-apps).
 
