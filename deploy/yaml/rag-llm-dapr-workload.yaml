@@ -51,16 +51,10 @@ spec:
         - name: rag-llm
           image: $ACR_HOST/rag-on-edge-llm:latest
           imagePullPolicy: Always
-          # livenessProbe:
-          #   initialDelaySeconds: 100
-          #   httpGet:
-          #     #path: /v1.0/healthz
-          #     port: http
-          # readinessProbe:
-          #   initialDelaySeconds: 100
-          #   httpGet:
-          #     #path: /v1.0/healthz
-          #     port: http
+          # Remove commented out env variable if you want to override the # of logical cores in your system
+          # env:
+          # - name: N_THREADS # Number of CPU for LLM used for inferencing
+          #   value: "32"
           
         # Container for the Pub/sub component
         - name: aio-mq-components
