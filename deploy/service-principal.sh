@@ -1,13 +1,23 @@
 #!/bin/bash
 # This script requires Azure CLI version 2.25.0 or later. Check version with `az --version`.
 
-# Modify for your environment.
-# ACR_NAME: The name of your Azure Container Registry
-# SERVICE_PRINCIPAL_NAME: Must be unique within your AD tenant
-ACR_NAME= <your-acr-name>
-SERVICE_PRINCIPAL_NAME= <input-a-service-principle-name>
-SECRET_NAME= <input-a-secret-name-for-your-cluster>
-NAMESPACE= <namespace-should-be-the-same-as-AIO-components-you-deployed>
+if [ -z "$ACR_NAME" ]; then
+    echo "ACR_NAME is not set"
+    exit 1
+fi
+if [ -z "$SERVICE_PRINCIPAL_NAME" ]; then
+    echo "SERVICE_PRINCIPAL_NAME is not set"
+    exit 1
+fi
+if [ -z "$SECRET_NAME" ]; then
+    echo "SECRET_NAME is not set"
+    exit 1
+fi
+if [ -z "$NAMESPACE" ]; then
+    NAMESPACE="azure-iot-operations"
+fi
+
+# Setup the Environment Variables as described in Readme.md
 # Obtain the full registry ID
 ACR_REGISTRY_ID=$(az acr show --name $ACR_NAME --query "id" --output tsv)
 echo $ACR_REGISTRY_ID
@@ -33,4 +43,4 @@ kubectl create secret docker-registry $SECRET_NAME \
    --docker-password=$PASSWORD \
    --namespace=$NAMESPACE
 
-echo "acr aksee secret is created: $SECRET_NAME"
+echo "Kubernetes secret for ACR pull secrets is created: $SECRET_NAME"

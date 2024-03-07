@@ -8,7 +8,9 @@ from langchain.llms import LlamaCpp
 import time
 logging.basicConfig(level=logging.DEBUG)
 
-N_THREADS=32
+# Number of threads to use for LLM inference: pass as Env Var to override
+N_THREADS = int(os.getenv('N_THREADS', os.cpu_count()))
+logging.info('Number of threads for LLM inference detected or passed in: ' + str(N_THREADS))
 
 #subscriber using Dapr
 app = Flask(__name__)

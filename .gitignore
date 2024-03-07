@@ -396,3 +396,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Temp folder
+temp/
+
+# Models
+src/rag-on-edge-LLM-32core/modules/LLMModule/models/*
