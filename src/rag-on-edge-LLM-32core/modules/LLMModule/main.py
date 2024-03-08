@@ -4,7 +4,7 @@ from dapr.clients import DaprClient
 import json
 import os
 import logging
-from langchain.llms import LlamaCpp
+from langchain_community.llms import LlamaCpp
 import time
 logging.basicConfig(level=logging.DEBUG)
 
@@ -83,7 +83,7 @@ def orders_subscriber():
 
 def llm_inference(data):
     #logging.info('llm input :' + data)
-    llm_response = llmmodel(data)
+    llm_response = llmmodel.invoke(data)
     llm_response_str=str(llm_response)
     #logging.info('llm response :' + llm_response_str)
     return llm_response_str
