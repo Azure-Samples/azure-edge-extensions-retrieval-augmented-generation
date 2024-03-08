@@ -1,11 +1,9 @@
 
-# Retrieval-Augmented Generation (RAG) on Edge  
+# Retrieval-Augmented Generation (RAG) on Edge with Small Language Models (SLM)
 
-RAG on Edge is a tool to perform text searches within files using a vector-based approach, and generate a readable response based on the search result with Large Language Model.
+In this branch, RAG on Edge performs text searches within files using a vector-based approach, and generate a readable response based on the search result with Small Language Model [Phi2](https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/).
 
 The solution is independent from cloud services, and can be deployed to the edge device with either CPU only or a combination of CPU+GPU. The messaging system follows a pub/sub pattern, ensuring adaptability to diverse edge computing scenarios.
-
-The solution currently supports the text-based query, and will be extended to support multi-modality (text, image, video and audio) search and generation in our next plan.
 
 ## Architecture
 
@@ -17,7 +15,7 @@ RAG solution is typically comprised with 2 processes: Indexing and Searching.
 - Searching is the process of finding the most similar vectors to a given query vector.
 
 ![architecture indexing](./images/Architecture-indexing.png)
-![architecture searching](./images/Architecture-searching.png)
+![architecture searching](./images/SLM-Architecture-searching.png)
 
 The implementation of RAG on Edge solution is composed of 5 components:
 
@@ -25,7 +23,7 @@ The implementation of RAG on Edge solution is composed of 5 components:
 - rag-on-edge-interface: an interface module to interact with web frontend and the backend components.
 - rag-on-edge-pubsub-broker: a pub/sub message broker for message passing between the components. currently we use Azure IoT Operations MQ broker as the message broker. The broker can be also replaced with other messaging brokers. DAPR sidecar is used to interact with the broker.
 - rag-on-edge-vectorDB: a database to store the vectors. currently we use [Chroma DB](https://www.trychroma.com/) as the vector database. The database can be also replaced with other vector databases.
-- rag-on-edge-LLM: a large language model (LLM) to generate the response based on the vector search result. currently we use [LLama2 model](https://ai.meta.com/llama/) as the LLM. It can be also replaced with other open sourced LLM model fit for edge inference.
+- rag-on-edge-SLM-Phi2: a small language model (SLM) to generate the response based on the vector search result. We use [Phi2](https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/). It can be also replaced with other open sourced SLM model fit for edge inference.
 
 ### Messaging Design
 
