@@ -1,5 +1,5 @@
 ARG CUDA_IMAGE="nvidia/cuda:12.0.1-devel-ubuntu22.04"
-ARG N_THREADS=32
+#ARG N_THREADS=32
 FROM ${CUDA_IMAGE}
 
 # Set environment variables
