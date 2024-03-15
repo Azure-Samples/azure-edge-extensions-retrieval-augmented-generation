@@ -402,3 +402,6 @@ temp/
 
 # Models
 src/rag-on-edge-LLM-32core/modules/LLMModule/models/*
+
+# Environment variable files
+.env
