@@ -10,6 +10,8 @@ The solution is independent from cloud services, and can be deployed to the edge
 > 
 > For choosing [Phi2 model](https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/) as the small language model in the rag solution, download "chengc/rag-n-edge-with-SLM-Phi2" branch of this repo.
 
+For multi-modal RAG on edge solution that handles image+text vector searching and image interpreting with Large Multi-modal Langauge Model, please refer to the repo [azure-edge-extensions-retrieval-augmented-generation-multimodel](https://github.com/Azure-Samples/azure-edge-extensions-retrieval-augmented-generation-multimodel).
+
 ## Architecture
 
 ### Architecture Diagrams
