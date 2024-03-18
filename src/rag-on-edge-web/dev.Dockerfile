@@ -1,11 +1,4 @@
-ARG CUDA_IMAGE="nvidia/cuda:12.0.1-devel-ubuntu22.04"
-ARG N_THREADS=32
-FROM ${CUDA_IMAGE}
-
-# Set environment variables
-# ENV N_THREADS=32
-
-# Set the working directory
+FROM mcr.microsoft.com/devcontainers/base:ubuntu AS base
 WORKDIR /app
 
 RUN apt-get update && \
@@ -14,13 +7,13 @@ RUN apt-get update && \
 RUN pip3 install --upgrade pip
 RUN pip3 install setuptools
 RUN pip3 install ptvsd==4.1.3
-COPY requirements.txt ./
-RUN pip3 install -r requirements.txt
+
+COPY ./requirements.txt /app/requirements.txt
+RUN pip install -r requirements.txt
 RUN pip3 install python-dotenv==0.21.0
 
-# Expose the Dapr sidecar port
-EXPOSE 8601
+EXPOSE 80
 
 COPY . .
 
-ENTRYPOINT [ "python3", "-u", "./main.py" ]
+ENTRYPOINT ["streamlit", "run", "page_home.py", "--server.port=8501", "--server.address=0.0.0.0"]
