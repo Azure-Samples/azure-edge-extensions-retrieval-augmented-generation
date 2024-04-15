@@ -55,6 +55,6 @@ spec:
     app: rag-web-workload
   ports:
     - protocol: TCP
-      port: 80
+      port: 8501
       targetPort: 8501
   type: LoadBalancer
