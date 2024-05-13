@@ -5,11 +5,6 @@ RAG on Edge is a tool to perform text searches within files using a vector-based
 
 The solution is independent from cloud services, and can be deployed to the edge device with either CPU only or a combination of CPU+GPU. The messaging system follows a pub/sub pattern, ensuring adaptability to diverse edge computing scenarios.
 
-> [!TIP]
-> For choosing [Llama2 7B quantized model](https://ai.meta.com/llama/) as the large language model in rag solution, download main branch of this repo.
-> 
-> For choosing [Phi2 model](https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/) as the small language model in the rag solution, download "chengc/rag-n-edge-with-SLM-Phi2" branch of this repo.
-
 For multi-modal RAG on edge solution that handles image+text vector searching and image interpreting with Large Multi-modal Langauge Model, please refer to the repo [azure-edge-extensions-retrieval-augmented-generation-multimodel](https://github.com/Azure-Samples/azure-edge-extensions-retrieval-augmented-generation-multimodel).
 
 ## Architecture
