@@ -217,6 +217,9 @@ kubectl logs <pod name> <container name> -n < namespace >
     - page-upload-data: Select a pdf file from the Windows machine and upload the file to the vectorDB. The file will be chunking and embedding into the vectorDB.
     - page-vector-search-and-generate: Input your query, for example "what is the content about safety workspace in this document?", click search. The web app will send the query to the backend and get the response back from the backend. It usually takes around 20 seconds to get the response in this demo solution.
 
+## Demo Video
+[Demo Video](https://www.youtube.com/watch?v=rb7-xRnFuPY)
+
 ## Resources
 
 - [Nick287/AOAI-Azure-Search-PDF Repo Author: Bo Wang](https://github.com/Nick287/AOAI-Azure-Search-PDF/tree/chengc/integrate-llm-edge-solution-new)
