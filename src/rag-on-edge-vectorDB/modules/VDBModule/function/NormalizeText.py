@@ -1,5 +1,5 @@
 import re
-import PyPDF2
+from pypdf import PdfReader
 
 class NormalizeText:
     # s is input text
@@ -30,7 +30,7 @@ class NormalizeText:
     
     def get_doc_content(self, pdf_file):
         item_list = []
-        pdf_reader = PyPDF2.PdfReader(pdf_file)  
+        pdf_reader = PdfReader(pdf_file)  
         for page in pdf_reader.pages:  
             pagesitems = self.normalize_text_to_page_item(page)
             for pagesitem in pagesitems:
@@ -43,7 +43,7 @@ class NormalizeText:
     
     def get_doc_content_txt(self, pdf_file):
         long_text = ""
-        pdf_reader = PyPDF2.PdfReader(pdf_file)  
+        pdf_reader = PdfReader(pdf_file)  
         for page in pdf_reader.pages:  
             content = page.extract_text()
             long_text += content
