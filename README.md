@@ -1,6 +1,9 @@
 
 # Retrieval-Augmented Generation (RAG) on Edge  
 
+> [!IMPORTANT]  
+> Development efforts on this repository have been paused. Please see [Azure Arc Jumpstart](https://azurearcjumpstart.com/). 
+
 RAG on Edge is a tool to perform text searches within files using a vector-based approach, and generate a readable response based on the search result with Large Language Model.
 
 The solution is independent from cloud services, and can be deployed to the edge device with either CPU only or a combination of CPU+GPU. The messaging system follows a pub/sub pattern, ensuring adaptability to diverse edge computing scenarios.
