@@ -23,7 +23,7 @@ spec:
 
       containers:
         - name: rag-web
-          image: ccselftestacr.azurecr.io/jumpstart-rag-web:v1
+          image: ccselftestacr.azurecr.io/jumpstart-newui-web:v27
           imagePullPolicy: Always
           ports:  
           - containerPort: 8501

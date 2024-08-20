@@ -12,7 +12,7 @@ COPY ./requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
 RUN pip3 install python-dotenv==0.21.0
 
-EXPOSE 80
+EXPOSE 8501
 
 COPY . .
 
