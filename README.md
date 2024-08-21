@@ -183,12 +183,20 @@ docker push $ACR_HOST/rag-on-edge-llm:latest
 8. Deploy Azure IoT MQ - Dapr PubSub Component.
 
   ```bash
+  \# For Azure IoT Operations ver < 0.6 
   kubectl apply -f ./deploy/yaml/rag-mq-components.yaml
+  ```
+
+  ```bash
+  \# For Azure IoT Operations ver == 0.6 
+  kubectl apply -f ./deploy/yaml/rag-mq-components-aio0p6.yaml
   ```
 
 9. Deploy each workload using `envsubst` for replacing Environment Variable names in the static YAML files. The variable names that will be replaced are `ACR_HOST` and `SECRET_NAME`.
 
 ```bash
+\# For Azure IoT Operations ver < 0.6 
+
 envsubst < ./deploy/yaml/rag-vdb-dapr-workload.yaml | kubectl apply -f -
 
 envsubst < ./deploy/yaml/rag-interface-dapr-workload.yaml | kubectl apply -f -
@@ -196,6 +204,18 @@ envsubst < ./deploy/yaml/rag-interface-dapr-workload.yaml | kubectl apply -f -
 envsubst < ./deploy/yaml/rag-web-workload.yaml | kubectl apply -f -
 
 envsubst < ./deploy/yaml/rag-llm-dapr-workload.yaml | kubectl apply -f -
+```
+
+```bash
+\# For Azure IoT Operations ver == 0.6 
+
+envsubst < ./deploy/yaml/rag-vdb-dapr-workload-aio0p6.yaml | kubectl apply -f -
+
+envsubst < ./deploy/yaml/rag-interface-dapr-workload-aio0p6.yaml | kubectl apply -f -
+
+envsubst < ./deploy/yaml/rag-web-workload-aio0p6.yaml | kubectl apply -f -
+
+envsubst < ./deploy/yaml/rag-llm-dapr-workload-aio0p6.yaml | kubectl apply -f -
 ```
 
 10. Verify that all the components are deployed successfully on the AKS EE cluster without errors. Some of the workloads like the LLM model, are very large, and can take more than 60 minutes to deploy in the cluster depending on the internet connection.
@@ -218,7 +238,7 @@ kubectl logs <pod name> <container name> -n < namespace >
     - page-create-index: Input a new index name and create a new index in the vector database.
     - page-delete-index: Select an index name and delete it from the vector database.
     - page-upload-data: Select a pdf file from the Windows machine and upload the file to the vectorDB. The file will be chunking and embedding into the vectorDB.
-    - page-vector-search-and-generate: Input your query, for example "what is the content about safety workspace in this document?", click search. The web app will send the query to the backend and get the response back from the backend. It usually takes around 20 seconds to get the response in this demo solution.
+    - page-vector-search-and-generate: Input your query, for example "what is the content about safety workspace in this document?", click search. The web app will send the query to the backend and get the response back from the backend.
 
 ## Demo Video
 [Demo Video](https://www.youtube.com/watch?v=rb7-xRnFuPY)
