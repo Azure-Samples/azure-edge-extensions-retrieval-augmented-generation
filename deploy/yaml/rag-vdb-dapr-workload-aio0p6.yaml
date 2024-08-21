@@ -53,11 +53,11 @@ spec:
           name: aio-ca-trust-bundle-test-only
 
       imagePullSecrets:
-         - name: cctestotdata
+         - name: <>
 
       containers:
         - name: rag-vdb
-          image: ccselftestacr.azurecr.io/jumpstart-rag-vdb:v18 # jumpstart-rag-vdb:v1 works for aiov1.5
+          image: <>
           imagePullPolicy: Always
           # livenessProbe:
           #   initialDelaySeconds: 100

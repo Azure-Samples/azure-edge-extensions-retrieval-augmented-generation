@@ -53,11 +53,11 @@ spec:
           name: aio-ca-trust-bundle-test-only
 
       imagePullSecrets:
-         - name: cctestotdata
+         - name: <>
 
       containers:
         - name: rag-llm
-          image: ccselftestacr.azurecr.io/jumpstart-rag-slm:v3 # jumpstart-rag-slm:v3 works for aiov1.5
+          image: <>
           imagePullPolicy: Always
           # Remove commented out env variable if you want to override the # of logical cores in your system
           # env:
