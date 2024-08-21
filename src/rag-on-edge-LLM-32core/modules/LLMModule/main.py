@@ -4,7 +4,8 @@ from dapr.clients import DaprClient
 import json
 import os
 import logging
-from langchain.llms import LlamaCpp
+#from langchain.llms import LlamaCpp
+from langchain_community.llms import LlamaCpp
 import time
 logging.basicConfig(level=logging.DEBUG)
 
@@ -16,7 +17,7 @@ logging.info('Number of threads for LLM inference detected or passed in: ' + str
 app = Flask(__name__)
 app_port = os.getenv('LLM_PORT', '8601')
 
-llmmodel = LlamaCpp(model_path="./models/llama-2-7b.Q4_K_M.gguf", verbose=True, n_threads=N_THREADS)
+llmmodel = LlamaCpp(model_path="./models/phi-2.Q4_K_M.gguf", verbose=True, n_threads=N_THREADS)
 
 llm_prompt = '''Use the Content to answer the Search Query.
 
@@ -83,7 +84,8 @@ def orders_subscriber():
 
 def llm_inference(data):
     #logging.info('llm input :' + data)
-    llm_response = llmmodel(data)
+    #llm_response = llmmodel(data)
+    llm_response = llmmodel.invoke(data)
     llm_response_str=str(llm_response)
     #logging.info('llm response :' + llm_response_str)
     return llm_response_str

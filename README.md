@@ -14,6 +14,12 @@ For multi-modal RAG on edge solution that handles image+text vector searching an
 
 ### Architecture Diagrams
 
+> [!NOTE]
+> The latest sample are tested with Azure IoT Operations Preview version 0.6, and Azure IoT Operations Preview version < 0.6, please refer to the Quick Start #9 for the correct deployment yaml files.
+
+> [!NOTE]
+> The latest sample are tested with Large Language Model Phi2 and Llama2, please refer to the [rag-on-edge-LLM README](./src/rag-on-edge-LLM-32core/README.md) for the correct model file download.
+
 RAG solution is typically comprised with 2 processes: Indexing and Searching.
 
 - Indexing is the process of creating a vector representation of the data.
@@ -183,19 +189,19 @@ docker push $ACR_HOST/rag-on-edge-llm:latest
 8. Deploy Azure IoT MQ - Dapr PubSub Component.
 
   ```bash
-  \# For Azure IoT Operations ver < 0.6 
+  # For Azure IoT Operations ver < 0.6 
   kubectl apply -f ./deploy/yaml/rag-mq-components.yaml
   ```
 
   ```bash
-  \# For Azure IoT Operations ver == 0.6 
+  # For Azure IoT Operations ver == 0.6 
   kubectl apply -f ./deploy/yaml/rag-mq-components-aio0p6.yaml
   ```
 
 9. Deploy each workload using `envsubst` for replacing Environment Variable names in the static YAML files. The variable names that will be replaced are `ACR_HOST` and `SECRET_NAME`.
 
 ```bash
-\# For Azure IoT Operations ver < 0.6 
+# For Azure IoT Operations ver < 0.6 
 
 envsubst < ./deploy/yaml/rag-vdb-dapr-workload.yaml | kubectl apply -f -
 
@@ -207,7 +213,7 @@ envsubst < ./deploy/yaml/rag-llm-dapr-workload.yaml | kubectl apply -f -
 ```
 
 ```bash
-\# For Azure IoT Operations ver == 0.6 
+# For Azure IoT Operations ver == 0.6 
 
 envsubst < ./deploy/yaml/rag-vdb-dapr-workload-aio0p6.yaml | kubectl apply -f -
 
