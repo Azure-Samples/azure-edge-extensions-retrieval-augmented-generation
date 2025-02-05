@@ -32,7 +32,7 @@ sentencepiece~=0.1.98
 transformers>=4.35.2
 gguf>=0.1.0
 protobuf>=4.21.0
-langchain==0.1.7
+langchain==0.2.5
 langchain-community==0.0.20
 langchain-core==0.1.23
 langsmith==0.0.87
