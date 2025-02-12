@@ -4,7 +4,7 @@ openpyxl==3.1.2
 langchain==0.0.329
 tiktoken==0.5.1
 PyPDF2==3.0.1
-chromadb==0.4.15
+chromadb==0.5.0
 pathlib==1.0.1 
 ruamel-yaml==0.17.16
 Flask==3.0.0
